@@ -1,12 +1,10 @@
+const logger = require('./logger');
 
 
-function sayHello(name){
-    console.log( "Hello " + name);
-}
 
-sayHello('Sloba');
+logger = 1;
 
 
-var test = 'some test';
+logger.log('blaaa');
 
-console.log(module);
+//console.log(test);  
