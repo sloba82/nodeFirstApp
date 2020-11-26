@@ -5,3 +5,8 @@ function sayHello(name){
 }
 
 sayHello('Sloba');
+
+
+var test = 'some test';
+
+console.log(module);
