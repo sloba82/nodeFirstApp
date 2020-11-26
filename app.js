@@ -1,10 +1,7 @@
-const logger = require('./logger');
+const log = require('./logger');
 
 
 
-logger = 1;
-
-
-logger.log('blaaa');
+log('blaaa');
 
 //console.log(test);  
