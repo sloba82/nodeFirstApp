@@ -5,13 +5,28 @@ const logger = require('./logger'); // middleware
 const express = require('express');
 const app = express();
 
+
+
+//console.log(`NODE_ENV: ${process.env.NODE_ENV}`); //environment variable
+//console.log(`app: ${app.get('env')}`);
+
+
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));  // middleware za engodiranje request  req.body
 app.use(express.static('public')); // middleware  upucuje na folder public vracea fail 
                                    // npr. vraca file na ruti http://localhost:3000/readme.txt
 
 app.use(helmet()); // middleware
-app.use(morgan('tiny')); // Using a predefined format string
+
+if (app.get('env') === 'development'){
+    app.use(morgan('tiny'));
+    console.log('Morgan enabled...');
+}
+
+//app.use(morgan('tiny')); // Using a predefined format string
 
 app.use(logger); // use middleware logger.js
 
