@@ -1,3 +1,5 @@
+const morgan = require('morgan'); // middleware, HTTP request logger middleware for node.js
+const helmet = require('helmet'); // middleware, Helmet helps you secure your Express apps by setting various HTTP headers. 
 const Joi = require('joi');
 const logger = require('./logger'); // middleware 
 const express = require('express');
@@ -8,11 +10,13 @@ app.use(express.urlencoded({ extended: true}));  // middleware za engodiranje re
 app.use(express.static('public')); // middleware  upucuje na folder public vracea fail 
                                    // npr. vraca file na ruti http://localhost:3000/readme.txt
 
+app.use(helmet()); // middleware
+app.use(morgan('tiny')); // Using a predefined format string
+
 app.use(logger); // use middleware logger.js
 
 
 app.use(function(req, res, next){
-
     console.log('Authenticate...');
     next();
 });
