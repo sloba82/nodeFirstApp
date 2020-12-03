@@ -8,6 +8,9 @@ const logger = require('./logger'); // middleware
 const express = require('express');
 const app = express();
 
+app.set('view engine', 'pug');
+app.set('views', './view');
+
 //console.log(`NODE_ENV: ${process.env.NODE_ENV}`); //environment variable
 //console.log(`app: ${app.get('env')}`);
 
@@ -28,8 +31,6 @@ console.log('Mail password: ' + config.get('mail.password'));
 if (app.get('env') === 'development'){
     app.use(morgan('tiny'));
     startupDebugger('Morgan enabled...');
-
-    
 }
 
 //app.use(morgan('tiny')); // Using a predefined format string
@@ -49,7 +50,8 @@ const courses = [
 ];
 
  app.get('/', (req, res) => {
-    res.send('Hello World !!!');
+    res.render('index', { title: 'My Express App', message: 'Some message in body' });
+   // res.send('Hello World !!!');
  });
 
  app.get('/api/courses', (req, res) => {
