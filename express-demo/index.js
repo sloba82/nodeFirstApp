@@ -1,9 +1,21 @@
 const Joi = require('joi');
+const logger = require('./logger'); // middleware 
 const express = require('express');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true}));  // middleware za engodiranje request  req.body
+app.use(express.static('public')); // middleware  upucuje na folder public vracea fail 
+                                   // npr. vraca file na ruti http://localhost:3000/readme.txt
 
+app.use(logger); // use middleware logger.js
+
+
+app.use(function(req, res, next){
+
+    console.log('Authenticate...');
+    next();
+});
 
 const courses = [
     { id:1, name:'course1'},
