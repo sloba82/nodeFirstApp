@@ -7,10 +7,11 @@ getUser(1, getRepositories );
 
 console.log('After');
 
-// Named functions,  
+//  Named functions,  
 //  getRepositories(user.gitHubUsername, getCommits);  
 //  prvi parametar je vrednost 
-//  drugi parametar je callback funkcija, ustavari posledjuje se  prvi parametar -> drugom  parametru koji prima taj isti parametar kao da je funkcija
+//  drugi parametar je callback funkcija, 
+// ustvari posledjuje se prvi parametar -> drugom parametru koji prima taj isti parametar kao da je funkcija
 function getRepositories(user){ 
     getRepositories(user.gitHubUsername, getCommits);  
 }
