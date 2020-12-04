@@ -4,10 +4,12 @@ const config = require('config');
 const morgan = require('morgan'); // middleware, HTTP request logger middleware for node.js
 const helmet = require('helmet'); // middleware, Helmet helps you secure your Express apps by setting various HTTP headers. 
 const Joi = require('joi');
-const logger = require('./logger'); // middleware 
+const logger = require('./middleware/logger'); // middleware 
 
-const courses = require('./routes/courses');
-
+// routers !!!!!!!!!!!
+const courses = require('./routes/courses'); // router za kurseve
+const home = require('./routes/home'); // router za home rutu
+ 
 const express = require('express');
 const app = express();
 
@@ -24,7 +26,8 @@ app.use(express.static('public')); // middleware  upucuje na folder public vrace
                                    // npr. vraca file na ruti http://localhost:3000/readme.txt
 
 app.use(helmet()); // middleware
-app.use('/api/courses',  courses);
+app.use('/api/courses',  courses);  // router za /api/courses
+app.use('/', home);
 
 
 //configuration
@@ -48,13 +51,6 @@ app.use(function(req, res, next){
 });
 
 
-
-
-
- app.get('/', (req, res) => {
-    res.render('index', { title: 'My Express App', message: 'Some message in body' });
-   // res.send('Hello World !!!');
- });
 
 
  const port = process.env.PORT || 3000;
