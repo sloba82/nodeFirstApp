@@ -1,16 +1,28 @@
 console.log('Before');
 
-getUser(1, (user) => {
-    console.log('User', user);
-    getRepositories(user.gitHubUsername, (repos)=> {
-        console.log('Repos ', repos);
-    })
 
-});
-
-
+// Asynchronous
+getUser(1, getRepositories );
+ 
 
 console.log('After');
+
+// Named functions,  
+//  getRepositories(user.gitHubUsername, getCommits);  
+//  prvi parametar je vrednost 
+//  drugi parametar je callback funkcija, ustavari posledjuje se  prvi parametar -> drugom  parametru koji prima taj isti parametar kao da je funkcija
+function getRepositories(user){ 
+    getRepositories(user.gitHubUsername, getCommits);  
+}
+
+function getCommits(repos){
+    getCommits(repo, displayCommits );
+
+}
+
+function displayCommits(commits){
+    console.log(commits); 
+}
 
 
 // Callbacks
