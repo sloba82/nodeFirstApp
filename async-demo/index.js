@@ -34,7 +34,6 @@ function getUser(id) {
         }, 2000);
     });
 
-
 }
 
 function getRepositories(username) {
@@ -52,7 +51,7 @@ function getCommits(repo)
 {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('Callling gitHub APi...');
+            console.log('Calling gitHub APi...');
             resolve(['commit']);
         }, 2000);
     });
