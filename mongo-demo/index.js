@@ -37,16 +37,29 @@ async function getCourses() {
     console.log( 'corses', courses);
 }
 
-
 async function getCoursesFilter() {
-    const courses = await Course
-    .find({author: 'Mosh', isPublished: true})
+
+    // Query operatori
+    // eq (equal)
+    // ne (not equal)
+    // gt (greater then)
+    // gte (greater then or equal)
+    // lt (less then)
+    // lte (less then or equal to)
+    // in
+    // nin (not in)
+
+    const courses = await Course 
+   // .find({author: 'Mosh', isPublished: true})
+   // find exemple 
+   // .find({ price: {$gt: 10, $lte: 20 }}) // atribut  veci od 10  // dodaje  se $ na operator
+    .find ({ price: { $in: [10, 15, 20 ]}}) // pronadji gde su atributi jednak 10, 15, 20
+    .or([ {author: 'Mosh'}, {isPublished: true}])
     .limit(10)
     .sort({name:1})
     .select({name:1, tags: 1});  // odredi koje parametre vraca iz baze
     console.log( 'Filter Courses', courses);
 }
-
 
 getCoursesFilter();
 
