@@ -51,9 +51,21 @@ async function getCoursesFilter() {
 
     const courses = await Course 
    // .find({author: 'Mosh', isPublished: true})
-   // find exemple 
+   // find example 
    // .find({ price: {$gt: 10, $lte: 20 }}) // atribut  veci od 10  // dodaje  se $ na operator
     .find ({ price: { $in: [10, 15, 20 ]}}) // pronadji gde su atributi jednak 10, 15, 20
+
+    // Regular expresion
+    // Starts with Mosh
+    .find({author:/^Mosh/})
+
+    // Ends with Hamedani case insensitive
+    .find( { author: /Hamedani$/i})
+
+    // Contains Mosh
+    .find({author: /.*Mosh.*/})
+
+
     .or([ {author: 'Mosh'}, {isPublished: true}])
     .limit(10)
     .sort({name:1})
