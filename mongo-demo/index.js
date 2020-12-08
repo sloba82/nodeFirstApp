@@ -63,7 +63,7 @@ async function getCoursesFilter() {
     .find( { author: /Hamedani$/i})
 
     // Contains Mosh
-    .find({author: /.*Mosh.*/})
+    .find({author: /.*Mosh.*/i})
 
 
     .or([ {author: 'Mosh'}, {isPublished: true}])
